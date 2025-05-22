@@ -1,3 +1,10 @@
+document.querySelectorAll("input.btn-cart").forEach((input) => {
+  const wrapper = document.createElement("span");
+  wrapper.className = "input-cart-wrapper";
+  input.parentNode.insertBefore(wrapper, input);
+  wrapper.appendChild(input);
+});
+
 window.addEventListener("scroll", function () {
   const header = document.getElementById("fixedHeader");
   if (window.scrollY > 0) {
@@ -128,14 +135,6 @@ const closeBtns = document.querySelectorAll(".close-btn");
 const switchToRegister = document.getElementById("switchToRegister");
 const switchToLogin = document.getElementById("switchToLogin");
 
-// Модальные окна управления товарами
-const addProductModal = document.getElementById("addProductModal");
-const editProductModal = document.getElementById("editProductModal");
-const deleteProductModal = document.getElementById("deleteProductModal");
-const addProductBtn = document.getElementById("addProduct");
-const editProductBtn = document.getElementById("editProduct");
-const deleteProductBtn = document.getElementById("deleteProduct");
-
 // Общие функции для работы с модальными окнами
 function openModal(modal) {
   if (modal) modal.style.display = "flex";
@@ -155,16 +154,8 @@ function setupModal(openBtn, modal) {
 if (openLoginBtn && loginModal) setupModal(openLoginBtn, loginModal);
 if (openRegBtn && registerModal) setupModal(openRegBtn, registerModal);
 
-// Настройка модальных окон товаров
-if (addProductBtn && addProductModal)
-  setupModal(addProductBtn, addProductModal);
-if (editProductBtn && editProductModal)
-  setupModal(editProductBtn, editProductModal);
-if (deleteProductBtn && deleteProductModal)
-  setupModal(deleteProductBtn, deleteProductModal);
-
 // Закрытие модальных окон при клике на крестик или кнопку отмены
-document.querySelectorAll(".close-btn, .close-modal").forEach((btn) => {
+document.querySelectorAll(".close-btn").forEach((btn) => {
   btn.addEventListener("click", function () {
     const modalId = this.getAttribute("data-modal");
     if (modalId) {
@@ -179,12 +170,6 @@ window.addEventListener("click", (event) => {
   if (loginModal && event.target === loginModal) closeModal(loginModal);
   if (registerModal && event.target === registerModal)
     closeModal(registerModal);
-  if (addProductModal && event.target === addProductModal)
-    closeModal(addProductModal);
-  if (editProductModal && event.target === editProductModal)
-    closeModal(editProductModal);
-  if (deleteProductModal && event.target === deleteProductModal)
-    closeModal(deleteProductModal);
 });
 
 // Закрытие при нажатии Esc
@@ -192,13 +177,8 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeModal(loginModal);
     closeModal(registerModal);
-    closeModal(addProductModal);
-    closeModal(editProductModal);
-    closeModal(deleteProductModal);
   }
 });
-
-// Переключение между окнами входа и регистрации
 if (switchToRegister && loginModal && registerModal) {
   switchToRegister.addEventListener("click", (e) => {
     e.preventDefault();
