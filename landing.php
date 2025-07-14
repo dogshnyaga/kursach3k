@@ -84,7 +84,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show'])) {
             <!-- цена и кнопка-->
             <div class="card-price-cart">
               <p class="price"><?= number_format($product['price'], 0, '', ' ') ?> ₽</p>
-              <button class="btn btn-main" style="flex-grow: 0; margin-right: auto;">Подробнее</button>
+
+              <?php if (isset($USER['role'])) : ?>
+                <form action="" method="post">
+                  <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                  <input type="submit" value="В корзину" class="btn btn-main btn-cart" name="add_to_cart">
+                </form>
+              <?php else: ?>
+                <button type="button" class="btn btn-main btn-cart-noreg"
+                  onclick="alert('Для добавления товара в корзину необходимо авторизоваться')">
+                  В корзину
+                </button>
+              <?php endif ?>
             </div>
           </div>
         </div>
@@ -118,7 +129,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show'])) {
             <!-- цена и кнопка-->
             <div class="card-price-cart">
               <p class="price"><?= number_format($product['price'], 0, '', ' ') ?> ₽</p>
-              <button style="flex-grow: 0; margin-right: auto" class="btn btn-main">Подробнее</button>
+
+              <?php if (isset($USER['role'])) : ?>
+                <form action="" method="post">
+                  <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                  <input type="submit" value="В корзину" class="btn btn-main btn-cart" name="add_to_cart">
+                </form>
+              <?php else: ?>
+                <button type="button" class="btn btn-main btn-cart"
+                  onclick="alert('Для добавления товара в корзину необходимо авторизоваться'); showLoginModal();">
+                  В корзину
+                </button>
+              <?php endif ?>
             </div>
           </div>
         </div>
@@ -270,7 +292,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show'])) {
   </div>
 
   <!-- контакты и карта -->
-  <div class="map-block container">
+  <div class="map-block container" id="contacts">
     <div class="fill-block-content vertical-gap-auto">
       <p class="block-title">Нас легко найти!</p>
       <div class="links">

@@ -10,7 +10,7 @@
     <nav class="nav-links">
       <a href="../index.php">Главная</a>
       <a href="../?page=catalog">Каталог</a>
-      <a href="">О нас</a>
+      <a href="../index.php#contacts">Контакты</a>
 
       <div class="">
         <?php if (!isset($_SESSION['user_id'])): ?>

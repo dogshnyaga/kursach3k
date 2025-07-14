@@ -10,7 +10,7 @@
           fill="#fff" />
       </svg>
       <p class="author"><span class="developer">Разработчик:</span><br> Ярмухамедов<br> Амир Рашидович</p>
-      <p class="company-name">2025 ОАО «Люмен»</p>
+      <p class="company-name">2025 ООО «Люмен»</p>
     </div>
 
     <div class="footer-column">
@@ -22,7 +22,7 @@
         <a href="" class="footer-nav-option">Каталог</a>
         <a href="" class="footer-nav-option">О нас</a>
       </div>
-    </div>  
+    </div>
 
     <div class="footer-column">
       <h2 class="footer-column-title">

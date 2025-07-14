@@ -21,7 +21,7 @@ include('head.php');
     <?php
     include('blocks/header.php');
     if (isset($_GET['page'])) {
-        echo '<div class="header-room" style="height: 84px;"> </div>';
+        echo '<div class="header-room"> </div>';
     }
     ?>
 
@@ -35,7 +35,7 @@ include('head.php');
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
             $requireAuth = in_array($page, ['profile', 'cart']);
-            $requireAdmin = in_array($page, ['admin', 'create-category', 'create-product', 'edit-category', 'edit-product', 'delete-category', 'delete-product']);
+            $requireAdmin = in_array($page, ['admin', 'create-category', 'create-product', 'edit-category', 'edit-product', 'edit-profile', 'delete-category', 'delete-product']);
 
             if ($requireAuth && !isset($_SESSION['user_id'])) {
                 include('incl/404.php');
@@ -90,6 +90,14 @@ include('head.php');
 
                 case 'edit-product':
                     include('incl/edit-product.php');
+                    break;
+
+                case 'edit-profile':
+                    include('incl/edit-profile.php');
+                    break;
+
+                case 'about':
+                    include('incl/about.php');
                     break;
 
                 default:

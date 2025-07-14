@@ -32,16 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
 
 <main>
     <!-- Delete Product -->
-    <section id="delete-product" class="container">
-        <h2 class="section-title">Удаление продукта "Продукт 1"</h2>
-        <div style="display: flex;gap: 1.5rem;">
+    <section id="delete-product" class="container mt-40">
+        <div class="form-wrapper">
+            <h2 class="section-title">Удаление продукта "<?= $product['title'] ?>"</h2>
+            <div>
 
-            <button class="btn" onclick="location.href='./?page=show&sid=<?= $product['id'] ?>'">Отмена</button>
-            <form action="" method="post" style="width: 100%;">
-                <input type="hidden" name="delete_id" value="<?= $product['id'] ?>">
-                <button class="btn" style="background:var(--accent)"
-                    onclick="return confirm('Вы действительно хотите удалить?')">Удалить продукт</button>
-            </form>
+                <button class="btn btn-no-fill" onclick="location.href='./?page=show&sid=<?= $product['id'] ?>'">Отмена</button>
+                <form action="" method="post" style="width: 100%;" class="">
+                    <input type="hidden" name="delete_id" value="<?= $product['id'] ?>">
+                    <button class="btn btn-no-fill red-no-fill"
+                        onclick="return confirm('Вы действительно хотите удалить?')">
+                        Удалить продукт
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 </main>

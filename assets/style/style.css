@@ -14,7 +14,7 @@
     --dark: #3A4659;
     --text: #3A4659;
     --darkBackground: #354C70;
-    --cardStroke: #7D90AB;
+    --cardStroke: hsl(218, 19%, 84%);
 }
 
 /* text */
@@ -122,6 +122,10 @@ main {
 /* общие стили */
 
 /* */
+.header-room {
+    height: 64px;
+}
+
 header {
     display: flex;
     align-items: center;
@@ -245,7 +249,7 @@ nav a {
     padding: 20px;
     border: 1px solid var(--cardStroke);
     border-radius: 20px;
-    width: 100%;
+    width: 23%;
 }
 
 .card-content {
@@ -270,13 +274,22 @@ nav a {
 
 .card-title {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 10px;
     line-break: loose;
 }
 
 .card-desc {
     font-size: 14px;
+}
+
+.card-cover {
+    min-height: 136px;
+    object-fit: contain;
+}
+
+.catalog-block .card-cover {
+    min-height: 200px;
 }
 
 .price {
@@ -294,6 +307,24 @@ nav a {
     position: relative;
     padding-left: 30px;
 }
+
+
+.btn-cart-noreg {
+    flex-grow: 0;
+    margin-right: auto;
+    font-size: 14px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.btn-cart-noreg::before {
+    content: url('../ico/cart.svg');
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 8px;
+}
+
 
 .input-cart-wrapper {
     position: relative;
@@ -485,7 +516,6 @@ nav a {
 }
 
 .map-block .img-container {
-    width: 50%;
     object-fit: cover;
 }
 
@@ -540,6 +570,7 @@ footer {
     flex-direction: column;
     gap: 42px;
 }
+
 
 
 .footer-nav a,
@@ -611,6 +642,10 @@ footer {
 
 .filters {
     width: 250px;
+}
+
+.filters-header {
+    display: none;
 }
 
 .filters-mobile {
@@ -725,7 +760,6 @@ select {
 
 .card-image {
     width: 387px;
-    height: 387px;
 }
 
 .card-page-price {
@@ -940,6 +974,12 @@ select {
     color: #666;
 }
 
+.close-filters {
+    border-radius: 20px;
+    padding: 6px 12px 12px 12px;
+
+}
+
 
 .form-wrapper {
     display: flex;
@@ -1050,10 +1090,6 @@ select {
         max-width: 1024px;
     }
 
-    .catalog-block .card:last-child {
-        display: none;
-    }
-
     header {
         width: 1044px;
     }
@@ -1074,6 +1110,22 @@ select {
     .catalog-block .cards {
         height: auto;
     }
+
+    .catalog-page .card {
+        width: 30%;
+    }
+
+    .card-page-price {
+        width: 250px;
+    }
+
+    .chars td {
+        padding-right: 30px;
+    }
+
+    .card-image {
+        width: 300px;
+    }
 }
 
 header input {
@@ -1084,7 +1136,15 @@ header label {
     display: none;
 }
 
+.mobile-only {
+    display: none !important;
+}
+
 @media (max-width: 480px) {
+    .mobile-only {
+        display: block !important;
+    }
+
     .logo img {
         height: 50px;
     }
@@ -1151,8 +1211,34 @@ header label {
         top: 9px;
     }
 
-    .filters-mobile {
+    .filters {
+        display: none;
+        padding: 15px;
+        background: #f5f5f5;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        position: absolute;
+        top: 64px;
+        right: 0;
+        z-index: 4;
+    }
+
+    .filters.active {
         display: block;
+    }
+
+    .form-content {
+        display: block;
+    }
+
+
+    .filters,
+    .filter {
+        width: 100%;
+    }
+
+    .price-inputs {
+        width: 50%;
     }
 
     nav {
@@ -1205,7 +1291,7 @@ header label {
     }
 
     header {
-        width: 480px;
+        width: 440px;
         padding: 0 20px;
         height: 64px;
         border-bottom: 1px solid var(--cardStroke);
@@ -1249,6 +1335,14 @@ header label {
 
     .footer-nav {
         display: none;
+    }
+
+    .light-logo {
+        display: none;
+    }
+
+    .footer-column {
+        width: 30%;
     }
 
     .footer-column-title {
@@ -1298,6 +1392,7 @@ header label {
 
     .catalog-page .card {
         width: 100%;
+        height: auto;
     }
 
     .card-cover {
@@ -1310,6 +1405,11 @@ header label {
         flex-direction: row-reverse;
         justify-content: start;
         height: 25px;
+    }
+
+    .input-cart-wrapper::after {
+        left: 7px;
+        top: 56%;
     }
 
     .btn-cart {
@@ -1327,6 +1427,21 @@ header label {
         left: 1px;
     }
 
+    .btn-cart-noreg {
+        font-size: 0px;
+        padding: 11px;
+        border-radius: 100px;
+        margin-right: 10px;
+        height: 25px;
+        width: 25px;
+    }
+
+    .btn-cart-noreg::before {
+        width: 20px;
+        top: 6px;
+        left: 1px;
+    }
+
     .card-title {
         font-size: 15px;
         margin-bottom: 6px;
@@ -1339,6 +1454,7 @@ header label {
 
     .card-content {
         margin-top: 0;
+        gap: 20px;
     }
 
     .card .btn-no-fill {
@@ -1398,12 +1514,31 @@ header label {
         border: none;
     }
 
-    .filters-mobile {
+    .catalog-form {
+        margin-top: 20px;
+    }
+
+    .filters-mobile,
+    .sorting {
         display: block;
+        margin: auto 0;
+    }
+
+    .filters-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header-room {
+        height: 64px;
     }
 
     .breadcrumbs {
         display: none;
+    }
+
+    .mt-40 {
+        margin-top: 20px;
     }
 
 }
@@ -1431,7 +1566,7 @@ header label {
     .btn-no-fill:hover {
         background-color: var(--primary);
         color: white;
-        border: 2px solid var(--primary);
+        border: 2px solid white;
     }
 
     .card:hover {
@@ -1439,6 +1574,8 @@ header label {
     }
 
     .btn-no-fill.red-no-fill:hover {
-        color: red;
+        border-color: white;
+        color: white;
+        background-color: red;
     }
 }

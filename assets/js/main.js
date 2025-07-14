@@ -194,3 +194,4 @@ if (switchToLogin && registerModal && loginModal) {
     openModal(loginModal);
   });
 }
+
